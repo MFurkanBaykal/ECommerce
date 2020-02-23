@@ -1,0 +1,3 @@
+﻿add-migration Initial -Context "DataContext" -StartupProject "ECommerce.Web" -Project "ECommerce.Data"
+update-database Initial -Context "DataContext" -StartupProject "ECommerce.Web" -Project "ECommerce.Data"
+remove-migration Initial -Context "DataContext" -StartupProject "ECommerce.Web" -Project "ECommerce.Data"
