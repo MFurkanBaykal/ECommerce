@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerce.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200222152401_Initial")]
+    [Migration("20200229162245_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,6 +29,10 @@ namespace ECommerce.Data.Migrations
 
                     b.Property<bool>("Active");
 
+                    b.Property<bool>("Admin");
+
+                    b.Property<Guid?>("AutoLoginKey");
+
                     b.Property<DateTime>("CreateDate");
 
                     b.Property<bool>("Deleted");
@@ -41,7 +45,9 @@ namespace ECommerce.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<string>("Password");
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(40);
 
                     b.Property<string>("Surname")
                         .IsRequired()
@@ -52,6 +58,10 @@ namespace ECommerce.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new { Id = 1, Active = true, Admin = true, CreateDate = new DateTime(2020, 2, 29, 16, 22, 45, 419, DateTimeKind.Utc), Deleted = false, Email = "admin@admin.com", Name = "Admin", Password = "7C222FB2927D828AF22F592134E8932480637C0D", Surname = "Admin" }
+                    );
                 });
 #pragma warning restore 612, 618
         }
