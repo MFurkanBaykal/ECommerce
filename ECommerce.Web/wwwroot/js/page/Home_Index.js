@@ -1,5 +1,4 @@
-﻿var Home_Index =
-{
+﻿var Home_Index = {
     Init: function () {
         $.ajax({
             type: "GET",
@@ -8,7 +7,6 @@
             success: Home_Index.ModuleUserBar_Callback,
             dataType: "html",
             contentType: "html"
-
         });
     },
     ModuleUserBar_Callback: function (result) {

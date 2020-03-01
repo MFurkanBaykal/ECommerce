@@ -4,14 +4,16 @@ using ECommerce.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ECommerce.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200222152349_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,10 +29,6 @@ namespace ECommerce.Data.Migrations
 
                     b.Property<bool>("Active");
 
-                    b.Property<bool>("Admin");
-
-                    b.Property<Guid?>("AutoLoginKey");
-
                     b.Property<DateTime>("CreateDate");
 
                     b.Property<bool>("Deleted");
@@ -43,9 +41,7 @@ namespace ECommerce.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(40);
+                    b.Property<string>("Password");
 
                     b.Property<string>("Surname")
                         .IsRequired()
@@ -56,10 +52,6 @@ namespace ECommerce.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new { Id = 1, Active = true, Admin = true, CreateDate = new DateTime(2020, 2, 29, 13, 59, 54, 399, DateTimeKind.Utc), Deleted = false, Email = "admin@admin.com", Name = "Admin", Password = "7C222FB2927D828AF22F592134E8932480637C0D", Surname = "Admin" }
-                    );
                 });
 #pragma warning restore 612, 618
         }

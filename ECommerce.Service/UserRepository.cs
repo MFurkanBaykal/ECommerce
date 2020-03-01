@@ -18,8 +18,6 @@ namespace ECommerce.Service
             return _dataContext.Users.SingleOrDefault(a => a.AutoLoginKey == autoLoginKey);
         }
 
-    
-
         public User GetByEmailAndPassword(string email, string password)
         {
             return _dataContext.Users.SingleOrDefault(a => a.Email == email && a.Password == Helper.CryptoHelper.Sha1(password));
