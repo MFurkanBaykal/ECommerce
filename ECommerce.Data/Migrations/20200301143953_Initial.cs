@@ -12,7 +12,7 @@ namespace ECommerce.Data.Migrations
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "CreateDate",
-                value: new DateTime(2020, 2, 29, 16, 22, 45, 419, DateTimeKind.Utc));
+                value: new DateTime(2020, 3, 1, 14, 39, 53, 25, DateTimeKind.Utc));
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

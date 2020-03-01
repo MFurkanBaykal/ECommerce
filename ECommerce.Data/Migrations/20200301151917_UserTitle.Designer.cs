@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerce.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200229162245_Initial")]
-    partial class Initial
+    [Migration("20200301151917_UserTitle")]
+    partial class UserTitle
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,32 @@ namespace ECommerce.Data.Migrations
                 .HasAnnotation("ProductVersion", "2.1.8-servicing-32085")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("ECommerce.Data.Entities.Title", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Active");
+
+                    b.Property<DateTime>("CreateDate");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<string>("Name");
+
+                    b.Property<DateTime?>("UpdateDate");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Titles");
+
+                    b.HasData(
+                        new { Id = 1, Active = true, CreateDate = new DateTime(2020, 3, 1, 15, 19, 17, 148, DateTimeKind.Utc), Deleted = false, Name = "Müşteri" },
+                        new { Id = 2, Active = true, CreateDate = new DateTime(2020, 3, 1, 15, 19, 17, 149, DateTimeKind.Utc), Deleted = false, Name = "Yönetici" }
+                    );
+                });
 
             modelBuilder.Entity("ECommerce.Data.Entities.User", b =>
                 {
@@ -53,15 +79,27 @@ namespace ECommerce.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
+                    b.Property<int>("TitleId");
+
                     b.Property<DateTime?>("UpdateDate");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("TitleId");
+
                     b.ToTable("Users");
 
                     b.HasData(
-                        new { Id = 1, Active = true, Admin = true, CreateDate = new DateTime(2020, 2, 29, 16, 22, 45, 419, DateTimeKind.Utc), Deleted = false, Email = "admin@admin.com", Name = "Admin", Password = "7C222FB2927D828AF22F592134E8932480637C0D", Surname = "Admin" }
+                        new { Id = 1, Active = true, Admin = true, CreateDate = new DateTime(2020, 3, 1, 15, 19, 17, 149, DateTimeKind.Utc), Deleted = false, Email = "admin@admin.com", Name = "Admin", Password = "7C222FB2927D828AF22F592134E8932480637C0D", Surname = "Admin", TitleId = 2 }
                     );
+                });
+
+            modelBuilder.Entity("ECommerce.Data.Entities.User", b =>
+                {
+                    b.HasOne("ECommerce.Data.Entities.Title", "Title")
+                        .WithMany("Users")
+                        .HasForeignKey("TitleId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
