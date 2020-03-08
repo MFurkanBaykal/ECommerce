@@ -1,6 +1,4 @@
-﻿
-var Account_ChangePassword = {
-    Init: function () {
-        Helper.Module.Init("AccountMenu");
+﻿var Account_ChangePassword = {
+    Init: function() {
     }
-}
+};

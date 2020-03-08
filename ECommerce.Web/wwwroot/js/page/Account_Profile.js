@@ -1,6 +1,5 @@
 ﻿var Account_Profile = {
-    Init: function () {
-        Helper.Module.Init("AccountMenu");
+    Init: function() {
     },
     Save: function () {
         var name = $("#account-profile-name").val();
@@ -16,13 +15,11 @@
             url: "/account/profilesaveaction",
             data: data,
             dataType: "json",
-            contentType: "application/json; charset=utf-8",
+            contentType: "application/json; charset=utf-8;",
             success: Account_Profile.Save_Callback
-
         });
-
     },
     Save_Callback: function (result) {
         location.reload();
     }
-}
+};

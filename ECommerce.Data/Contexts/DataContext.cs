@@ -15,14 +15,12 @@ namespace ECommerce.Data.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Entities.Title>().HasData(new Entities.Title()
-            {
+            modelBuilder.Entity<Entities.Title>().HasData(new Entities.Title() {
                 Id = (int)Enums.UserTitle.Customer,
                 Name = "Müşteri",
                 Active = true,
                 CreateDate = DateTime.UtcNow,
-                Deleted = false,
-          
+                Deleted = false                
             });
             modelBuilder.Entity<Entities.Title>().HasData(new Entities.Title()
             {
@@ -30,8 +28,7 @@ namespace ECommerce.Data.Contexts
                 Name = "Yönetici",
                 Active = true,
                 CreateDate = DateTime.UtcNow,
-                Deleted = false,
-
+                Deleted = false
             });
             modelBuilder.Entity<Entities.User>().HasData(new Entities.User() {
                 Id = 1,
