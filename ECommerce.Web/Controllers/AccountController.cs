@@ -47,7 +47,7 @@ namespace ECommerce.Web.Controllers
 
         public IActionResult ChangePasswordAction([FromBody] Data.DTOs.Account_ChangePasswordAction_Request dto)
         {
-            if (!ModelState.IsValid) return BadRequest("bad boy");
+            if (!ModelState.IsValid) return BadRequest("Kötü çocuk");
 
             int userId = HttpContext.Session.GetInt32("UserId").Value;
             var user = _unitOfWork.UserRepository.GetById(userId);
