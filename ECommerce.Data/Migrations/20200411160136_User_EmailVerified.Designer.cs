@@ -10,16 +10,45 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerce.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200301151917_UserTitle")]
-    partial class UserTitle
+    [Migration("20200411160136_User_EmailVerified")]
+    partial class User_EmailVerified
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.8-servicing-32085")
+                .HasAnnotation("ProductVersion", "2.1.14-servicing-32113")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("ECommerce.Data.Entities.OutgoingEmail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Active");
+
+                    b.Property<string>("Body");
+
+                    b.Property<DateTime>("CreateDate");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<int>("OutgoingEmailStateId");
+
+                    b.Property<string>("Subject");
+
+                    b.Property<string>("To");
+
+                    b.Property<int>("TryCount");
+
+                    b.Property<DateTime?>("UpdateDate");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OutgoingEmails");
+                });
 
             modelBuilder.Entity("ECommerce.Data.Entities.Title", b =>
                 {
@@ -42,8 +71,8 @@ namespace ECommerce.Data.Migrations
                     b.ToTable("Titles");
 
                     b.HasData(
-                        new { Id = 1, Active = true, CreateDate = new DateTime(2020, 3, 1, 15, 19, 17, 148, DateTimeKind.Utc), Deleted = false, Name = "Müşteri" },
-                        new { Id = 2, Active = true, CreateDate = new DateTime(2020, 3, 1, 15, 19, 17, 149, DateTimeKind.Utc), Deleted = false, Name = "Yönetici" }
+                        new { Id = 1, Active = true, CreateDate = new DateTime(2020, 4, 11, 16, 1, 36, 387, DateTimeKind.Utc), Deleted = false, Name = "Müşteri" },
+                        new { Id = 2, Active = true, CreateDate = new DateTime(2020, 4, 11, 16, 1, 36, 387, DateTimeKind.Utc), Deleted = false, Name = "Yönetici" }
                     );
                 });
 
@@ -66,6 +95,8 @@ namespace ECommerce.Data.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(350);
+
+                    b.Property<bool>("EmailVerified");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -90,7 +121,7 @@ namespace ECommerce.Data.Migrations
                     b.ToTable("Users");
 
                     b.HasData(
-                        new { Id = 1, Active = true, Admin = true, CreateDate = new DateTime(2020, 3, 1, 15, 19, 17, 149, DateTimeKind.Utc), Deleted = false, Email = "admin@admin.com", Name = "Admin", Password = "7C222FB2927D828AF22F592134E8932480637C0D", Surname = "Admin", TitleId = 2 }
+                        new { Id = 1, Active = true, Admin = true, CreateDate = new DateTime(2020, 4, 11, 16, 1, 36, 387, DateTimeKind.Utc), Deleted = false, Email = "admin@admin.com", EmailVerified = false, Name = "Admin", Password = "7C222FB2927D828AF22F592134E8932480637C0D", Surname = "Admin", TitleId = 2 }
                     );
                 });
 
